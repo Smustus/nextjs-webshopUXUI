@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 
 :root {
   --background: #ffffff;
@@ -16,6 +18,86 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* background: var(--background); */
+  background: linear-gradient(
+    180deg,
+    rgba(148, 163, 184, 1) 0%,
+    rgba(100, 116, 139, 1) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(71, 85, 105, 1) 0%,
+    rgba(51, 65, 85, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(71, 85, 105, 1) 60%,
+    rgba(51, 65, 85, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(111, 125, 146, 1) 50%,
+    rgba(51, 65, 85, 1) 100%
+  );
+  /* background: radial-gradient(
+    circle,
+    rgb(93, 107, 126) 50%,
+    rgb(38, 49, 65) 100%
+  ); */
+  /* background: radial-gradient(
+    circle,
+    rgba(253, 197, 255, 1) 50%,
+    rgba(102, 56, 104, 1) 100%
+  ); */
+  /* background: radial-gradient(
+    circle,
+    rgba(219, 159, 221, 1) 50%,
+    rgba(102, 56, 104, 1) 100%
+  ); */
+  /* background: radial-gradient(
+    circle,
+    rgba(254, 222, 255, 1) 30%,
+    rgba(102, 56, 104, 1) 100%
+  ); */
+  font-family: "geistSans", "geistSans Fallback";
+  min-width: 350px;
+  min-height: 100vh;
+}
+
+p {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.auto-dimensions {
+  width: 250px;
+  height: auto;
+}
+
+.small-auto-dimensions {
+  width: 90px;
+  height: auto;
+}
+
+.cart-dimensions {
+  width: 35px;
+  height: auto;
+}
+
+.nav-dimensions {
+  width: 30px;
+  height: 30px;
+}
+
+.arrow-dimensions {
+  width: 20px;
+  height: auto;
+}
+
+.fade {
+  opacity: 1;
+  transition: scale opacity 0.1s ease;
+}
+
+.fade-out {
+  opacity: 0;
 }
