@@ -2,6 +2,7 @@ import makeupPic2 from "../../assets/makeupPic2.webp";
 import groceries2 from "../../assets/groceries.webp";
 import furniture2 from "../../assets/furniture2.jpg";
 import perfume2 from "../../assets/perfume2.jpg";
+import Image from "next/image";
 
 const AboutPage = () => {
   const categories = [
@@ -59,10 +60,11 @@ const AboutPage = () => {
               key={category.category}
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              <img
+              <Image
                 src={category.image}
                 alt={category.title}
-                className="rounded-t-lg w-full h-40 object-cover"
+                fill
+                className="rounded-t-lg w-full h-40 "
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-700">

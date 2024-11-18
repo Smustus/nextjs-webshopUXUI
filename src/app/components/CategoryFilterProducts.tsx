@@ -29,14 +29,13 @@ const CategoryFilterProducts = ({
     });
   };
 
-  useEffect(() => {
-    const products = filterProducts(activeCategory);
-    console.log(products);
-    setActiveFilter(products);
-  }, [activeCategory]);
-
   const filterProducts = (categories: string[]) =>
     products.filter((product) => categories.includes(product.category));
+
+  useEffect(() => {
+    const products = filterProducts(activeCategory);
+    setActiveFilter(products);
+  }, [activeCategory, setActiveFilter, filterProducts]);
 
   return (
     <>

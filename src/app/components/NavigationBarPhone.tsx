@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import homeLogo from "../assets/house.svg";
 import shopLogo from "../assets/basket-shopping.svg";

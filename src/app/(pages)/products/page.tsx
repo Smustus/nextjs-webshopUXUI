@@ -2,7 +2,7 @@
 import CategoryFilterProducts from "@/app/components/CategoryFilterProducts";
 import ProductCard from "@/app/components/ProductCard";
 import SearchField from "@/app/components/SearchField";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type ProductData = {
   products: Product[];
