@@ -3,16 +3,16 @@ import Button from "./Button";
 import makeUpPic from "../assets/makeupPic.webp";
 import furnitureUpPic from "../assets/furniturePic.webp";
 import perfumePic from "../assets/perfumePic.webp";
-import groceriesPic from "../assets/groceries3png.png";
 import groceriesPic2 from "../assets/groceries3.webp";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { firstLetterUC } from "@/lib/formatters";
 import chevronRight from "../assets/chevron-right.svg";
 import chevronLeft from "../assets/chevron-left.svg";
 import Image from "next/image";
 
 const ProductCategoryCard = () => {
-  const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [activeSlide, setActiveSlide] = useState<number>(2);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const slides = [
     {
@@ -37,57 +37,118 @@ const ProductCategoryCard = () => {
     },
   ];
 
-  const handleChange = (index: number, change: number) => {
-    let newSlide = index + change;
-    if (newSlide === -1) {
-      newSlide = slides.length - 1;
-    }
-    if (newSlide === slides.length) {
-      newSlide = 0;
-    }
-    setActiveSlide(newSlide);
-  };
+  const handleChange = useCallback(
+    (change: number) => {
+      setActiveSlide((prevSlide) => {
+        const newSlide = prevSlide + change;
+        if (newSlide === -1) {
+          return slides.length - 1;
+        }
+        if (newSlide === slides.length) {
+          return 0;
+        }
+        return newSlide;
+      });
+    },
+    [slides.length]
+  );
+
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsLargeScreen(window.innerWidth > 639);
+    };
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", updateScreenSize);
+    };
+  }, []);
 
   return (
     <article
-      className={`col-span-2 md:col-span-3 flex justify-between items-center relative w-full min-w-80 min-h-40 bg-cover bg-no-repeat bg-center rounded-lg hover:scale-105 duration-200 shadow-md hover:shadow-xl`}
+      className={`col-span-2 md:col-span-3 flex flex-col sm:flex-row justify-between items-center relative w-full min-w-80 min-h-40 bg-cover bg-no-repeat bg-center rounded-lg hover:scale-105 duration-200 shadow-md hover:shadow-xl`}
       style={{
         backgroundImage: `url(${slides[activeSlide].image})`,
-        height: "clamp(300px, 35vw, 340px)",
+        height: "clamp(300px, 40vw, 340px)",
       }}
     >
       <div className="absolute inset-0 bg-black opacity-30 rounded-lg" />
-      <button
-        className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 ml-4 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
-        onClick={() => handleChange(activeSlide, -1)}
-      >
-        <Image
-          src={chevronLeft}
-          alt={"Previous"}
-          className="arrow-dimensions drop-shadow-md"
-        />
-      </button>
-      <article className="flex flex-col justify-center items-center">
-        <Button
-          href={"/products"}
-          className="bg-black/60 relative z-10 font-bold text-xl text-center md:text-2xl shadow-md drop-shadow-lg py-2 px-6 rounded-full hover:bg-black/80 hover:scale-105 hover:shadow-lg active:scale-100 duration-200 w-fit italic tracking-wide"
-        >
-          {firstLetterUC(slides[activeSlide].category)}
-        </Button>
-        <p className="text-white text-center z-10 font-bold text-base sm:text-lg drop-shadow-lg italic tracking-wide">
-          {slides[activeSlide].phrase}
-        </p>
-      </article>
-      <button
-        className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 mr-4 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
-        onClick={() => handleChange(activeSlide, 1)}
-      >
-        <Image
-          src={chevronRight}
-          alt={"Next"}
-          className="arrow-dimensions drop-shadow-md"
-        />
-      </button>
+      {isLargeScreen ? (
+        <>
+          <button
+            className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 ml-4 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
+            onClick={() => handleChange(-1)}
+            aria-label="Previous"
+          >
+            <Image
+              src={chevronLeft}
+              alt={"Previous"}
+              className="arrow-dimensions drop-shadow-md"
+            />
+          </button>
+          <article className="flex flex-col justify-center items-center rounded-full p-1">
+            <Button
+              href={"/products"}
+              className="bg-black/60 relative z-10 font-bold text-xl text-center md:text-2xl shadow-md drop-shadow-lg py-2 px-6 rounded-full hover:bg-black/80 hover:scale-105 hover:shadow-lg active:scale-100 duration-200 w-fit italic tracking-wide backdrop-blur-sm"
+            >
+              {firstLetterUC(slides[activeSlide].category)}
+            </Button>
+            <p className="text-white text-center z-10 font-bold text-base sm:text-lg italic tracking-wide backdrop-blur-sm rounded-full">
+              {slides[activeSlide].phrase}
+            </p>
+          </article>
+          <button
+            className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 mr-4 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
+            onClick={() => handleChange(1)}
+            aria-label="Next"
+          >
+            <Image
+              src={chevronRight}
+              alt={"Next"}
+              className="arrow-dimensions drop-shadow-md"
+            />
+          </button>
+        </>
+      ) : (
+        <>
+          <article className="flex flex-col justify-center items-center rounded-full p-1 my-auto">
+            <Button
+              href={"/products"}
+              className="bg-black/60 relative z-10 font-bold text-xl text-center md:text-2xl shadow-md drop-shadow-lg py-2 px-6 rounded-full hover:bg-black/80 hover:scale-105 hover:shadow-lg active:scale-100 duration-200 w-fit italic tracking-wide backdrop-blur-sm"
+            >
+              {firstLetterUC(slides[activeSlide].category)}
+            </Button>
+            <p className="text-white text-center z-10 font-bold text-base sm:text-lg italic tracking-wide backdrop-blur-sm rounded-full">
+              {slides[activeSlide].phrase}
+            </p>
+          </article>
+          <div className="flex mb-4">
+            <button
+              className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 mx-6 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
+              onClick={() => handleChange(-1)}
+              aria-label="Previous"
+            >
+              <Image
+                src={chevronLeft}
+                alt={"Previous"}
+                className="arrow-dimensions drop-shadow-md"
+              />
+            </button>
+            <button
+              className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 mx-6 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
+              onClick={() => handleChange(1)}
+              aria-label="Next"
+            >
+              <Image
+                src={chevronRight}
+                alt={"Next"}
+                className="arrow-dimensions drop-shadow-md"
+              />
+            </button>
+          </div>
+        </>
+      )}
     </article>
   );
 };

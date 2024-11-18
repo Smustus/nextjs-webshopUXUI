@@ -79,12 +79,12 @@ const DeliveryOptions = ({
 
       <fieldset className="mt-2 sm:m-0 text-center">
         <Button
-          className="px-6 py-4 m-1 bg-black w-40"
+          className="px-6 py-3 m-1 bg-black w-40"
           onClick={() => setActiveForm("personDetails")}
         >
           Back
         </Button>
-        <Button type="submit" className="px-6 py-4 m-1 bg-black w-40">
+        <Button type="submit" className="px-6 py-3 m-1 bg-black w-40">
           {isLoading ? "Processing..." : "Continue"}
         </Button>
       </fieldset>

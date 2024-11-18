@@ -39,29 +39,16 @@ body {
     rgba(111, 125, 146, 1) 50%,
     rgba(51, 65, 85, 1) 100%
   );
-  /* background: radial-gradient(
-    circle,
-    rgb(93, 107, 126) 50%,
-    rgb(38, 49, 65) 100%
-  ); */
-  /* background: radial-gradient(
-    circle,
-    rgba(253, 197, 255, 1) 50%,
-    rgba(102, 56, 104, 1) 100%
-  ); */
-  /* background: radial-gradient(
-    circle,
-    rgba(219, 159, 221, 1) 50%,
-    rgba(102, 56, 104, 1) 100%
-  ); */
-  /* background: radial-gradient(
-    circle,
-    rgba(254, 222, 255, 1) 30%,
-    rgba(102, 56, 104, 1) 100%
-  ); */
   font-family: "geistSans", "geistSans Fallback";
   min-width: 350px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  min-width: 350px;
 }
 
 p {
@@ -69,7 +56,7 @@ p {
 }
 
 .auto-dimensions {
-  width: 250px;
+  width: 300px;
   height: auto;
 }
 
@@ -83,13 +70,33 @@ p {
   height: auto;
 }
 
+.card-dimensions {
+  width: auto;
+  height: 35px;
+}
+
 .nav-dimensions {
   width: 30px;
   height: 30px;
 }
 
+.nav-dimensions-phone {
+  width: 30px;
+  height: auto;
+}
+
 .arrow-dimensions {
   width: 20px;
+  height: auto;
+}
+
+.small-arrow-dimensions {
+  width: 10px;
+  height: auto;
+}
+
+.brandLogo {
+  width: 100px;
   height: auto;
 }
 
@@ -100,4 +107,11 @@ p {
 
 .fade-out {
   opacity: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .brandLogo {
+    width: 120px;
+    height: auto;
+  }
 }

@@ -1,11 +1,17 @@
 "use client";
 import Button from "@/app/components/Button";
-import CartCalculation from "@/app/components/CartCalculation";
-import DisplayProductsCart from "@/app/components/DisplayProductsCart";
-import { getCartProducts } from "@/app/utils/getProducts";
-import { sortById } from "@/app/utils/sortProducts";
+import { getCartProducts } from "@/lib/utils/getProducts";
+import { sortById } from "@/lib/utils/sortProducts";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+const DisplayProductsCart = dynamic(
+  () => import("@/app/components/DisplayProductsCart")
+);
+const CartCalculation = dynamic(
+  () => import("@/app/components/CartCalculation")
+);
 
 const CartPage = () => {
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
@@ -13,8 +19,9 @@ const CartPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setCartProducts(getCartProducts());
-    accumulatedProdArr(getCartProducts());
+    const products = getCartProducts();
+    setCartProducts(products);
+    setUniqueProducts(accumulatedProdArr(products));
   }, []);
 
   const accumulatedProdArr = (cartProducts: Product[]) => {
@@ -26,12 +33,13 @@ const CartPage = () => {
         newArr.push(product);
       }
     });
-    const sortedProducts = sortById(newArr);
-    setUniqueProducts(sortedProducts);
+    return sortById(newArr);
   };
 
+  const isCartEmpty = cartProducts.length === 0;
+
   return (
-    <section className="bg-white w-full sm:w-5/6 h-5/6 rounded-3xl p-6 shadow-lg">
+    <section className="bg-white min-w-fit w-full sm:w-5/6 h-5/6 rounded-3xl p-6 mt-6 shadow-lg">
       <section className="flex flex-col justify-between">
         <DisplayProductsCart
           cartProducts={cartProducts}
@@ -41,17 +49,16 @@ const CartPage = () => {
         />
         <section className="flex flex-col items-center">
           <CartCalculation cartProducts={cartProducts} />
-          <fieldset className="flex">
+          <fieldset className="flex mt-6">
             <Button
               onClick={() => router.push("/products")}
-              disabled={cartProducts.length <= 0 ? true : false}
               className="bg-black p-3 rounded w-32 sm:w-40 m-2"
             >
-              Keep shopping
+              Back to shop
             </Button>
             <Button
               onClick={() => router.push("/cart/checkout")}
-              disabled={cartProducts.length <= 0 ? true : false}
+              disabled={isCartEmpty}
               className="bg-black p-3 rounded w-32 sm:w-40 m-2"
             >
               Checkout

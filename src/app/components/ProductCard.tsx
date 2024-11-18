@@ -3,7 +3,8 @@ import { formatEUR } from "@/lib/formatters";
 import Image from "next/image";
 import Button from "./Button";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import DiscountMark from "./DiscountMark";
 
 type ProductCardProps = {
   product: Product;
@@ -11,11 +12,33 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [message, setMessage] = useState<string>("");
-  const discountPrice = product.price * (1 - product.discountPercentage / 100);
+  const discountPrice = useMemo(
+    () => product.price * (1 - product.discountPercentage / 100),
+    [product.price, product.discountPercentage]
+  );
+
+  const discountPercent = useMemo(
+    () => Number(((1 - discountPrice / product.price) * 100).toFixed(1)),
+    [product.price, discountPrice]
+  );
+
+  const handleAddToCart = useCallback(() => {
+    const cartData = sessionStorage.getItem("cart");
+    const cartProducts: Product[] = cartData ? JSON.parse(cartData) : [];
+    const updatedCart = [...cartProducts, product];
+    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    window.dispatchEvent(new Event("storage"));
+
+    setMessage(`${product.title} was added to the cart`);
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  }, [product]);
 
   return (
     <div className="flex flex-col justify-between max-w-sm h-full bg-transparent hover:scale-105 duration-200">
-      <article className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden h-full hover:shadow-2xl">
+      <article className="relative bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden h-full hover:shadow-2xl">
         <Link
           className="relative w-full h-60 flex justify-center"
           href={`/products/${product.title
@@ -30,6 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             height={250}
             className="rounded-t-lg hover:scale-110 duration-200 cursor-pointer auto-dimensions"
           />
+          <DiscountMark discountPercent={discountPercent} />
         </Link>
         <section className="p-4 pb-8 flex flex-col justify-between">
           <h3 className="text-lg font-semibold text-gray-800">
@@ -49,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </section>
 
             <section className="flex flex-col text-sm">
-              <h4 className="bg-yellow-400 text-yellow-900 font-semibold px-2.5 py-0.5 rounded">{`Rating: ${product.rating} / 5`}</h4>
+              <h4 className="bg-yellow-400 text-yellow-900 font-semibold px-2.5 py-0.5 rounded-full">{`Rating: ${product.rating} / 5`}</h4>
               <h4 className="text-gray-600 font-bold text-end m-1">{`${product.reviews.length} reviews`}</h4>
             </section>
           </div>
@@ -69,20 +93,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </section>
       </article>
       <Button
-        className="m-auto mt-4 -translate-y-10 rounded-full duration-200 w-56"
+        className="m-auto mt-4 -translate-y-10 rounded-full duration-200 w-56 md:w-44 xl:w-56"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.stopPropagation();
-          const cartData = sessionStorage.getItem("cart");
-          const cartProducts: Product[] = cartData ? JSON.parse(cartData) : [];
-          const updatedCart = [...cartProducts, product];
-          sessionStorage.setItem("cart", JSON.stringify(updatedCart));
-
-          window.dispatchEvent(new Event("storage"));
-
-          setMessage(`${product.title} was added to the cart`);
-          setTimeout(() => {
-            setMessage("");
-          }, 2000);
+          handleAddToCart();
         }}
       >
         Add to Cart

@@ -2,19 +2,26 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const ImageDisplay = (product: Product) => {
+type ImageDisplayProps = {
+  product: Product;
+  className?: string;
+};
+
+const ImageDisplay = ({ product, className }: ImageDisplayProps) => {
+  console.log(product);
+
   const [currentImage, setCurrentImage] = useState<string>(product.images[0]);
   return (
-    <article className="w-1/3">
+    <article className={`${className}`}>
       <Image
         src={currentImage}
         alt={product.title}
         width={300}
         height={300}
-        className="auto-dimensions"
+        className={`auto-dimensions`}
       />
 
-      <div className="grid grid-cols-3 gap-2 mt-2">
+      <div className="flex justify-center lg:grid lg:grid-cols-3 gap-2 mt-2 w-full">
         {product.images.map((img, index) => (
           <Image
             key={index}

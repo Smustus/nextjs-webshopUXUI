@@ -6,19 +6,26 @@ import ImageDisplay from "./ImageDisplay";
 const DetailedProductCard = (product: Product) => {
   return (
     <>
-      <section className="flex gap-6">
-        <ImageDisplay {...product} />
+      <section className="flex flex-col lg:flex-row gap-6">
+        <ImageDisplay
+          product={product}
+          className="flex flex-col justify-center items-center lg:justify-start lg:items-start"
+        />
 
-        <div className="w-2/3 flex flex-col">
-          <h1 className="text-2xl font-bold text-gray-700">{product.title}</h1>
+        <div className="w-full lg:w-2/3 flex flex-col">
+          <h1 className="text-xl lg:text-2xl font-bold text-gray-700">
+            {product.title}
+          </h1>
 
-          <p className="text-lg mt-2 font-semibold text-gray-600">
+          <h4 className="text-sm lg:text-lg mt-2 font-semibold text-gray-600">
             {product.description}
-          </p>
-          <h4 className="mt-4 text-sm text-gray-500">{product.brand}</h4>
+          </h4>
+          <h4 className="mt-4 text-xs lg:text-sm text-gray-500">
+            {product.brand}
+          </h4>
 
-          <div className="flex items-center mt-4 space-x-3">
-            <span className="text-2xl font-bold text-gray-900">
+          <div className="flex flex-wrap items-center mt-4 gap-2">
+            <span className="text-xl lg:text-2xl font-bold text-gray-900">
               {formatEUR(
                 product.price * (1 - product.discountPercentage / 100)
               )}
@@ -28,7 +35,7 @@ const DetailedProductCard = (product: Product) => {
                 {formatEUR(product.price)}
               </span>
             )}
-            <span className="ml-auto bg-yellow-400 text-yellow-900 px-2 py-0.5 text-xs rounded font-semibold">
+            <span className="ml-auto bg-yellow-400 text-yellow-900 px-2 py-0.5 text-base rounded-full font-semibold">
               Rating: {product.rating} / 5
             </span>
           </div>
@@ -49,7 +56,10 @@ const DetailedProductCard = (product: Product) => {
             x {product.dimensions.depth} cm
           </h4>
 
-          <Button className="mt-4 mx-0" disabled={product.stock <= 0}>
+          <Button
+            className="mt-4 mx-0 w-full sm:w-60"
+            disabled={product.stock <= 0}
+          >
             Add to Cart
           </Button>
 
@@ -64,18 +74,23 @@ const DetailedProductCard = (product: Product) => {
       </section>
 
       <section className="mt-8 text-gray-600">
-        <h2 className="text-lg font-semibold">Customer Reviews</h2>
+        <h2 className="text-base lg:text-lg font-semibold">Customer Reviews</h2>
         <div className="space-y-4 mt-4">
           {product.reviews.map((review, index) => (
             <div key={index} className="border-t pt-4">
-              <h4 className="font-semibold">{review.reviewerName}</h4>
-              <p className="text-xs text-gray-600">
+              <div className="flex">
+                <h4 className="font-semibold my-0.5 mr-2">
+                  {review.reviewerName}
+                </h4>
+                <h4 className="flex items-center bg-yellow-400 text-yellow-900 text-base font-semibold px-3 rounded-full">
+                  Rating: {review.rating} / 5
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 my-1">
                 {new Date(review.date).toLocaleDateString()}
               </p>
-              <p className=" text-yellow-500 font-bold">
-                Rating: {review.rating} / 5
-              </p>
-              <p className="text-sm text-gray-700">{review.comment}</p>
+
+              <p className="text-sm text-gray-700 my-1">{review.comment}</p>
             </div>
           ))}
           {product.reviews.length === 0 && (

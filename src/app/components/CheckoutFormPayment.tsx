@@ -2,6 +2,11 @@
 import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import { useRouter } from "next/navigation";
+import CheckoutPaymentOptions from "./CheckoutPaymentOption";
+import klarna from "../assets/klarna.png";
+import swish from "../assets/swish.png";
+import card from "../assets/credit-card.svg";
 
 const CheckoutFormPayment = ({
   setActiveForm,
@@ -11,6 +16,23 @@ const CheckoutFormPayment = ({
   >;
 }) => {
   const [isLoading, setIsloading] = useState(false);
+  const [paymentOption, setPaymentOption] = useState<string>("");
+  const router = useRouter();
+
+  const payments = [
+    {
+      name: "Klarna",
+      image: klarna.src,
+    },
+    {
+      name: "Swish",
+      image: swish.src,
+    },
+    {
+      name: "Card",
+      image: card.src,
+    },
+  ];
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -20,39 +42,74 @@ const CheckoutFormPayment = ({
     }, 2000);
   }
 
+  const handleSubmitPayment = () => {
+    setTimeout(() => {
+      router.push("/cart/checkout/confirmation");
+    }, 1000);
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col items-center pt-4 md:pt-0"
-    >
+    <div className="flex flex-col items-center pt-4 md:pt-0">
       <h4 className="text-stone-900/80 font-black text-xl">
         Enter payment details
       </h4>
-      <fieldset className="flex p-2">
-        <Input legend="Card number" />
-      </fieldset>
+      <ul className="grid grid-cols-3 gap-2">
+        {payments.map((payment) => (
+          <li key={payment.name}>
+            <CheckoutPaymentOptions
+              name="payment"
+              payment={payment.name}
+              image={payment.image}
+              setPaymentOption={setPaymentOption}
+              paymentOption={paymentOption}
+            />
+          </li>
+        ))}
+      </ul>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center pt-4 md:pt-0"
+      >
+        <fieldset className="flex p-2 w-72 md:w-60 lg:w-72">
+          <Input legend="Card number" />
+        </fieldset>
 
-      <fieldset className="flex p-0 w-12">
-        <Input type="date" legend="Exp. date" className="px-1" />
-        <Input legend="CVV" />
-      </fieldset>
+        <fieldset className="flex justify-between flex-wrap p-2 w-72 md:w-60 lg:w-72">
+          <Input type="date" legend="Exp. date" />
+          <Input legend="CVV" className="w-16" />
+        </fieldset>
 
-      <fieldset className="flex p-2">
-        <Input legend="Country" />
-      </fieldset>
+        <fieldset className="flex p-2 w-72 md:w-60 lg:w-72">
+          <Input legend="Country" />
+        </fieldset>
 
-      <fieldset className="mt-2 sm:m-0 text-center">
-        <Button
-          className="px-6 py-4 m-1 bg-black w-40"
-          onClick={() => setActiveForm("deliveryOptions")}
-        >
-          Back
-        </Button>
-        <Button type="submit" className="px-6 py-4 m-1 bg-black w-40">
-          {isLoading ? "Processing..." : "Make payment"}
-        </Button>
-      </fieldset>
-    </form>
+        <fieldset className="flex p-3 w-72 md:w-60 lg:w-72 text-stone-900/80 font-semibold">
+          <input type="checkbox" id="tos" className="mr-2 cursor-pointer" />
+          <label htmlFor="tos" className="cursor-pointer">
+            I agree to the{" "}
+            <span className="text-blue-900/80 hover:text-blue-900/100 cursor-pointer underline">
+              Terms of service
+            </span>
+          </label>
+        </fieldset>
+
+        <fieldset className="flex flex-row md:flex-col lg:flex-row mt-2 text-center">
+          <Button
+            className="px-6 py-3 m-1 bg-black w-40 md:w-44 lg:w-40"
+            onClick={() => setActiveForm("deliveryOptions")}
+          >
+            Back
+          </Button>
+          <Button
+            type="submit"
+            className="px-6 py-3 m-1 bg-black w-40 md:w-44 lg:w-40"
+            onClick={handleSubmitPayment}
+          >
+            {isLoading ? "Processing..." : "Make payment"}
+          </Button>
+        </fieldset>
+      </form>
+    </div>
   );
 };
 

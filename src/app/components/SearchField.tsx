@@ -25,15 +25,15 @@ const SearchField = () => {
   };
 
   return (
-    <section className="mb-8">
-      <article className="flex font-semibold text-gray-700 rounded-full shadow-lg focus-within:outline-1 focus-within:outline-slate-900 focus-visible:outline-none focus-visible:outline-slate-300 ">
+    <section className="mb-8 xl:mb-10">
+      <article className="flex font-semibold text-gray-700 rounded-full shadow-lg focus-within:outline-1 focus-within:outline-slate-900 focus-visible:outline-none focus-visible:outline-slate-300 min-h-12">
         <label htmlFor="searchField" />
         <input
           name="searchField"
           id="searchField"
           type="text"
           placeholder="Search..."
-          className="text-lg pl-5 rounded-s-full focus-visible:outline-none focus-visible:shadow-xl "
+          className="text-lg pl-5 rounded-s-full focus-visible:outline-none focus-visible:shadow-xl max-w-64 sm:max-w-none"
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={handleKeyDown}
         />
@@ -41,8 +41,8 @@ const SearchField = () => {
           <Image
             src={magGlass}
             alt="Search"
-            height={45}
-            width={45}
+            height={48}
+            width={48}
             className="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600 rounded-e-full p-1 pl-0 hover:bg-gradient-to-tr hover:from-slate-700 hover:via-slate-500 hover:to-slate-700"
           />
         </button>
