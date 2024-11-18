@@ -29,13 +29,12 @@ const CategoryFilterProducts = ({
     });
   };
 
-  const filterProducts = (categories: string[]) =>
-    products.filter((product) => categories.includes(product.category));
-
   useEffect(() => {
-    const products = filterProducts(activeCategory);
-    setActiveFilter(products);
-  }, [activeCategory, setActiveFilter, filterProducts]);
+    const filterProducts = (categories: string[]): Product[] =>
+      products.filter((product) => categories.includes(product.category));
+    const productsFiltered = filterProducts(activeCategory);
+    setActiveFilter(productsFiltered);
+  }, [activeCategory, setActiveFilter]);
 
   return (
     <>
@@ -43,7 +42,6 @@ const CategoryFilterProducts = ({
         {categories.map((category) => (
           <article
             key={category}
-            aria-pressed={activeCategory.includes(category)}
             className={`relative flex flex-col items-center justify-center font-bold drop-shadow-md rounded-lg py-3 mx-2 mb-2 cursor-pointer group ${
               activeCategory.includes(category) ? "" : "hover:animate-pulse"
             }`}

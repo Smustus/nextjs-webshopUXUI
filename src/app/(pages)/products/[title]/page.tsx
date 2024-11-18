@@ -1,7 +1,7 @@
 import DetailedProductCard from "@/app/components/DetailedProductCard";
 
 const SingleProductPage = async ({ params }: { params: { title: string } }) => {
-  const { title } = await params;
+  const { title } = params;
   const productId = title.split("-").pop();
   const response = await fetch(`https://dummyjson.com/products/${productId}`);
   const product: Product = await response.json();

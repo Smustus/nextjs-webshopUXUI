@@ -86,8 +86,6 @@ const SearchField = () => {
           <Image
             src={magGlass}
             alt="Search"
-            height={40}
-            width={40}
             className="bg-white rounded-l-full py-1 pl-2 magGlas-dimensions"
           />
         </button>
