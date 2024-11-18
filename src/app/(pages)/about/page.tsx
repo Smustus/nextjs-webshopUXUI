@@ -58,13 +58,14 @@ const AboutPage = () => {
           {categories.map((category) => (
             <article
               key={category.category}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="relative bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <Image
+                width={260}
+                height={260}
                 src={category.image}
                 alt={category.title}
-                fill
-                className="rounded-t-lg w-full h-40 "
+                className="rounded-t-xl w-full h-1/2 object-cover about-auto-dimensions"
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-700">

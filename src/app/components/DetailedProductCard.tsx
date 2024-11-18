@@ -6,7 +6,7 @@ import ImageDisplay from "./ImageDisplay";
 const DetailedProductCard = (product: Product) => {
   return (
     <>
-      <section className="flex flex-col lg:flex-row gap-6">
+      <section className="flex flex-col lg:flex-row gap-6 ">
         <ImageDisplay
           product={product}
           className="flex flex-col justify-center items-center lg:justify-start lg:items-start"
@@ -25,7 +25,7 @@ const DetailedProductCard = (product: Product) => {
           </h4>
 
           <div className="flex flex-wrap items-center mt-4 gap-2">
-            <span className="text-xl lg:text-2xl font-bold text-red-500 ">
+            <span className="text-xl lg:text-2xl font-bold text-red-500">
               {formatEUR(
                 product.price * (1 - product.discountPercentage / 100)
               )}
@@ -35,7 +35,7 @@ const DetailedProductCard = (product: Product) => {
                 {formatEUR(product.price)}
               </span>
             )}
-            <span className="ml-auto bg-yellow-400 text-yellow-900 px-2 py-0.5 text-base rounded-full font-semibold">
+            <span className="ml-auto bg-yellow-400 text-yellow-900 px-2 py-0.5 text-base rounded-full font-semibold drop-shadow-md">
               Rating: {product.rating} / 5
             </span>
           </div>
@@ -82,7 +82,7 @@ const DetailedProductCard = (product: Product) => {
                 <h4 className="font-semibold my-0.5 mr-2">
                   {review.reviewerName}
                 </h4>
-                <h4 className="flex items-center bg-yellow-400 text-yellow-900 text-base font-semibold px-3 rounded-full">
+                <h4 className="flex items-center bg-yellow-400 text-yellow-900 text-base font-semibold px-3 rounded-full drop-shadow-md">
                   Rating: {review.rating} / 5
                 </h4>
               </div>
@@ -90,7 +90,7 @@ const DetailedProductCard = (product: Product) => {
                 {new Date(review.date).toLocaleDateString()}
               </p>
 
-              <p className="text-sm text-gray-700 my-1">{review.comment}</p>
+              <h4 className="text-sm text-gray-700 my-1">{review.comment}</h4>
             </div>
           ))}
           {product.reviews.length === 0 && (

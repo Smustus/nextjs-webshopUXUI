@@ -13,8 +13,8 @@ const SignupCard = () => {
           Join Us Today!
         </h2>
         <p className="italic font-semibold text-lg md:text-xl drop-shadow-md">
-          <span className="text-red-600/100 font-bold">20% off</span> for new
-          members!
+          <span className="text-red-600/100 font-bold">20% off&nbsp;</span>the
+          first purchase
         </p>
         <p className="italic text-base lg:text-xl drop-shadow-md">
           Sign up now and unlock more exclusive benefits

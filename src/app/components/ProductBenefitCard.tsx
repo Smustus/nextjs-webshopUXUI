@@ -68,7 +68,7 @@ const ProductBenefitCard = () => {
   }, [views.length]);
 
   useEffect(() => {
-    const interval = setInterval(updateView, 10000);
+    const interval = setInterval(updateView, 12000);
     return () => clearInterval(interval);
   }, [updateView]);
 

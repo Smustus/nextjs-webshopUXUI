@@ -60,6 +60,11 @@ p {
   height: auto;
 }
 
+/* .about-auto-dimensions {
+  width: 300px;
+  height: auto;
+} */
+
 .small-auto-dimensions {
   width: 90px;
   height: auto;
