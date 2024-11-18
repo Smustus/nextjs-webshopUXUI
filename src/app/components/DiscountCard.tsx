@@ -5,12 +5,13 @@ import Button from "./Button";
 const DiscountCard = () => {
   return (
     <article
-      className="relative flex flex-col justify-between items-center bg-gradient-to-br from-gray-700/80 to-gray-900/80 text-white font-semibold rounded-lg p-3 sm:p-6 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl w-full h-full"
+      className="relative flex flex-col justify-between items-center bg-gradient-to-br from-gray-700/80 to-gray-900/80 text-white font-semibold rounded-lg p-3 sm:p-6 hover:scale-105 transition-transform duration-300 shadow-custom-white hover:shadow-custom-white-lg w-full h-full"
       style={{
         height: "clamp(330px, 40vw, 360px)",
       }}
     >
-      <div className="absolute inset-0 bg-black/20 rounded-lg" />
+      <div className="absolute inset-0 bg-black/40 rounded-lg z-5" />
+
       <div className="text-center h-2/3 flex flex-col justify-between">
         <h2 className="text-2xl lg:text-3xl font-extrabold tracking-wide mb-4 drop-shadow-md">
           Limited-Time Offer!

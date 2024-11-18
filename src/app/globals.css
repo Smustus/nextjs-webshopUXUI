@@ -70,9 +70,15 @@ p {
   height: auto;
 }
 
+.magGlas-dimensions {
+  width: 40px;
+  height: auto;
+}
+
 .card-dimensions {
   width: auto;
   height: 35px;
+  box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.5);
 }
 
 .nav-dimensions {

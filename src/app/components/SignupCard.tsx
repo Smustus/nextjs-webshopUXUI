@@ -3,7 +3,7 @@ import Button from "./Button";
 const SignupCard = () => {
   return (
     <article
-      className="relative flex flex-col justify-between items-center bg-gradient-to-br from-white/100 to-white/20 rounded-lg text-black/80 p-3 sm:p-6 hover:scale-105 transition-transform duration-200 shadow-lg hover:shadow-xl w-full h-full"
+      className="relative flex flex-col justify-between items-center bg-gradient-to-br from-white/100 to-white/60 rounded-lg text-black/80 p-3 sm:p-6 hover:scale-105 transition-transform duration-200 shadow-custom-white hover:shadow-custom-white-lg w-full h-full"
       style={{
         height: "clamp(330px, 40vw, 360px)",
       }}
@@ -16,7 +16,7 @@ const SignupCard = () => {
           <span className="text-red-600/100 font-bold">20% off</span> for new
           members!
         </p>
-        <p className="italic text-base :text-xl drop-shadow-md">
+        <p className="italic text-base lg:text-xl drop-shadow-md">
           Sign up now and unlock more exclusive benefits
         </p>
       </div>

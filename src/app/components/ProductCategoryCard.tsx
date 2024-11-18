@@ -67,13 +67,14 @@ const ProductCategoryCard = () => {
 
   return (
     <article
-      className={`col-span-2 md:col-span-3 flex flex-col sm:flex-row justify-between items-center relative w-full min-w-80 min-h-40 bg-cover bg-no-repeat bg-center rounded-lg hover:scale-105 duration-200 shadow-md hover:shadow-xl`}
+      className={`col-span-2 md:col-span-3 flex flex-col sm:flex-row justify-between items-center relative w-full min-w-80 min-h-40 bg-cover bg-no-repeat bg-center rounded-lg hover:scale-105 duration-200 shadow-custom-white hover:shadow-custom-white-lg`}
       style={{
         backgroundImage: `url(${slides[activeSlide].image})`,
         height: "clamp(300px, 40vw, 340px)",
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-30 rounded-lg" />
+      <div className="absolute inset-0 bg-black/30 rounded-lg z-5" />
+
       {isLargeScreen ? (
         <>
           <button

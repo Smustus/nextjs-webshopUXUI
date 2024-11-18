@@ -80,7 +80,7 @@ const ProductBenefitCard = () => {
       className="row-start-3 md:row-start-auto col-span-2 md:col-span-1 md:block w-full h-full fade"
     >
       <article
-        className={`relative flex flex-col items-center justify-between text-center bg-black/20 text-white/90 rounded-lg sm:p-6 w-full h-full bg-cover bg-no-repeat bg-center hover:scale-105 duration-200 shadow-md hover:shadow-xl md:text-base lg:text-lg tracking-wide p-4 ${
+        className={`relative flex flex-col items-center justify-between text-center bg-black/20 text-white/90 rounded-lg sm:p-6 w-full h-full bg-cover bg-no-repeat bg-center hover:scale-105 duration-200 shadow-custom-white hover:shadow-custom-white-lg md:text-base lg:text-lg tracking-wide p-4 ${
           isFading ? "fade-out" : "fade"
         }`}
         style={{
@@ -89,6 +89,7 @@ const ProductBenefitCard = () => {
         }}
       >
         <div className="absolute inset-0 bg-black/70 rounded-lg" />
+
         <h3 className="text-2xl lg:text-3xl font-black mb-2 italic z-10 drop-shadow-md">
           {views[activeView].title}
         </h3>

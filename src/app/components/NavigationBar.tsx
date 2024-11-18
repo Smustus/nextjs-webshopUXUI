@@ -72,11 +72,11 @@ const NavigationBar = () => {
                     setMenuOpen(!menuOpen);
                   }
                 }}
-                className="relative pb-2 pt-6 sm:pt-3"
+                className="relative pb-2 pt-6 sm:pt-3 drop-shadow-md"
               >
                 {link.label}
                 <span
-                  className={`absolute left-1/4 -bottom-0 h-1 w-1/2 bg-white rounded-xl duration-300 ease-out`}
+                  className={`absolute left-1/4 -bottom-0 h-1 w-1/2 bg-white rounded-xl duration-300 shadow-md ease-out`}
                 />
               </Link>
             </div>
@@ -94,11 +94,11 @@ const NavigationBar = () => {
                     setMenuOpen(!menuOpen);
                   }
                 }}
-                className="relative pb-2 pt-6 sm:pt-3"
+                className="relative pb-2 pt-6 sm:pt-3 drop-shadow-md"
               >
                 {link.label}
                 <span
-                  className={`absolute left-0 -bottom-0 h-1 w-0 bg-white rounded-xl transition-all duration-300 ease-out group-hover:w-full ${
+                  className={`absolute left-0 -bottom-0 h-1 w-0 bg-white rounded-xl transition-all duration-300 ease-out shadow-md group-hover:w-full ${
                     pathname === link.href ? "w-full" : "w-0"
                   }`}
                 />
@@ -108,7 +108,7 @@ const NavigationBar = () => {
         )}
       </section>
       <Button
-        className="absolute left-4 flex justify-center items-center sm:hidden mr-7 w-14 h-14"
+        className="hidden sm:hidden absolute left-4  justify-center items-center mr-7 w-14 h-14"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         <Image src={bars} alt={"Menu"} className="nav-dimensions" />

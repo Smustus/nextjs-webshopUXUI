@@ -93,13 +93,13 @@ const PopularProductsDisplay = async () => {
                   </div>
                   <div className="flex flex-wrap justify-between pt-auto">
                     <section className="flex flex-col">
-                      <span className="text-xl font-bold text-gray-800">
+                      <span className="text-xl font-bold text-red-500 ">
                         {formatEUR(
                           product.price * (1 - product.discountPercentage / 100)
                         )}
                       </span>
                       {product.discountPercentage > 0 && (
-                        <span className="text-sm text-red-500 line-through">
+                        <span className="text-sm text-gray-800 line-through">
                           {formatEUR(product.price)}
                         </span>
                       )}

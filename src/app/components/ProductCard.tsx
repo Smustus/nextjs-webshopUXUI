@@ -62,11 +62,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <h4 className="text-sm text-gray-600 mt-1">{product.description}</h4>
           <div className="flex items-start justify-between mt-4">
             <section className="flex flex-col">
-              <span className="text-xl font-bold text-gray-800">
+              <span className="text-xl font-bold text-red-500 ">
                 {formatEUR(discountPrice)}
               </span>
               {product.discountPercentage > 0 && (
-                <span className="text-sm text-red-500 line-through">
+                <span className="text-sm text-gray-800 line-through">
                   {formatEUR(product.price)}
                 </span>
               )}

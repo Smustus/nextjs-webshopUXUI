@@ -25,13 +25,13 @@ const DetailedProductCard = (product: Product) => {
           </h4>
 
           <div className="flex flex-wrap items-center mt-4 gap-2">
-            <span className="text-xl lg:text-2xl font-bold text-gray-900">
+            <span className="text-xl lg:text-2xl font-bold text-red-500 ">
               {formatEUR(
                 product.price * (1 - product.discountPercentage / 100)
               )}
             </span>
             {product.discountPercentage > 0 && (
-              <span className="text-sm text-red-500 line-through">
+              <span className="text-sm text-gray-800 line-through">
                 {formatEUR(product.price)}
               </span>
             )}

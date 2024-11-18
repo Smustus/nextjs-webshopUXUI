@@ -18,6 +18,7 @@ const CartCalculation = ({
   deliveryCost = 0,
 }: CartCalculateProps) => {
   const pathname = usePathname();
+  console.log(pathname);
 
   const { productsPrice, productsPriceDiscount, totalDiscount } =
     useMemo(() => {
@@ -56,15 +57,20 @@ const CartCalculation = ({
     </article>
   );
 
-  const renderCartSummary = () => (
-    <article className={`flex flex-col items-center w-full mt-2 mb-4`}>
-      <h4>{`Products total: ${formatEUR(productsPrice)}`}</h4>
-      <h4 className="font-black">{`After discount: ${formatEUR(
-        productsPriceDiscount
-      )}`}</h4>
-      <h4 className="text-red-800 italic">{`Total saved: ${totalDiscount}`}</h4>
-    </article>
-  );
+  const renderCartSummary = () =>
+    cartProducts.length > 0 ? (
+      <article className={`flex flex-col items-center w-full mt-2 mb-4`}>
+        <h4>{`Products total: ${formatEUR(productsPrice)}`}</h4>
+        <h4 className="font-black">{`After discount: ${formatEUR(
+          productsPriceDiscount
+        )}`}</h4>
+        <h4 className="text-red-800 italic">{`Total saved: ${totalDiscount}`}</h4>
+      </article>
+    ) : (
+      <article className={`flex flex-col items-center w-full mt-2 mb-4`}>
+        <h4>{`Products total: ${formatEUR(productsPrice)}`}</h4>
+      </article>
+    );
 
   return (
     <section
@@ -78,7 +84,8 @@ const CartCalculation = ({
           <Button className="translate-y-1 my-2 mx-2 w-36 h-12">Apply</Button>
         </article>
       )}
-      {pathname === "/cart/checkout" || "/cart/checkout/confirmation"
+      {pathname === "/cart/checkout" ||
+      pathname === "/cart/checkout/confirmation"
         ? renderCheckoutContent()
         : renderCartSummary()}
     </section>
