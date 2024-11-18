@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DetailedProductCard from "@/app/components/DetailedProductCard";
 
 const SingleProductPage = async ({ params }: { params: { title: any } }) => {
