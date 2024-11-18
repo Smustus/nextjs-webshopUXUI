@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DetailedProductCard from "@/app/components/DetailedProductCard";
 
-const SingleProductPage = async ({ params }: { params: { title: any } }) => {
-  const { title } = params;
+interface PageProps {
+  params: any;
+}
+
+const SingleProductPage = async ({ params }: PageProps) => {
+  const { title } = await params;
   const productId = title.split("-").pop();
   const response = await fetch(`https://dummyjson.com/products/${productId}`);
   const product: Product = await response.json();
