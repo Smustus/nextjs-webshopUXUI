@@ -1,9 +1,26 @@
+"use client";
 import { formatEUR } from "@/lib/formatters";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Button from "./Button";
 import ImageDisplay from "./ImageDisplay";
+import RenderStarRating from "./RenderStarRating";
 
 const DetailedProductCard = (product: Product) => {
+  const [message, setMessage] = useState<string>("");
+
+  const handleAddToCart = useCallback(() => {
+    const cartData = sessionStorage.getItem("cart");
+    const cartProducts: Product[] = cartData ? JSON.parse(cartData) : [];
+    const updatedCart = [...cartProducts, product];
+    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    window.dispatchEvent(new Event("storage"));
+
+    setMessage(`${product.title} was added to the cart`);
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  }, [product]);
   return (
     <>
       <section className="flex flex-col lg:flex-row gap-6 ">
@@ -35,9 +52,6 @@ const DetailedProductCard = (product: Product) => {
                 {formatEUR(product.price)}
               </span>
             )}
-            <span className="ml-auto bg-yellow-400 text-yellow-900 px-2 py-0.5 text-base rounded-full font-semibold drop-shadow-md">
-              Rating: {product.rating} / 5
-            </span>
           </div>
 
           <h4
@@ -55,10 +69,14 @@ const DetailedProductCard = (product: Product) => {
             Dimensions: {product.dimensions.width} x {product.dimensions.height}{" "}
             x {product.dimensions.depth} cm
           </h4>
-
+          <h4 className="text-red-900 font-bold text-sm my-2">{message}</h4>
           <Button
             className="mt-4 mx-0 w-full sm:w-60"
             disabled={product.stock <= 0}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.stopPropagation();
+              handleAddToCart();
+            }}
           >
             Add to Cart
           </Button>
@@ -73,8 +91,15 @@ const DetailedProductCard = (product: Product) => {
         </div>
       </section>
 
-      <section className="mt-8 text-gray-600">
-        <h2 className="text-base lg:text-lg font-semibold">Customer Reviews</h2>
+      <section className="mt-10 text-gray-600">
+        <div className="flex w-fit">
+          <h2 className="text-base lg:text-lg font-semibold mr-2">
+            Customer Reviews
+          </h2>
+          <span className="flex items-center justify-center ml-auto pr-2.5 py-1 text-base rounded-full font-semibold drop-shadow-md h-fit">
+            {RenderStarRating(product.rating)}
+          </span>
+        </div>
         <div className="space-y-4 mt-4">
           {product.reviews.map((review, index) => (
             <div key={index} className="border-t pt-4">
@@ -82,8 +107,8 @@ const DetailedProductCard = (product: Product) => {
                 <h4 className="font-semibold my-0.5 mr-2">
                   {review.reviewerName}
                 </h4>
-                <h4 className="flex items-center bg-yellow-400 text-yellow-900 text-base font-semibold px-3 rounded-full drop-shadow-md">
-                  Rating: {review.rating} / 5
+                <h4 className="flex items-center text-base font-semibold pr-2.5 rounded-full drop-shadow-md">
+                  {RenderStarRating(review.rating)}
                 </h4>
               </div>
               <p className="text-sm text-gray-600 my-1">

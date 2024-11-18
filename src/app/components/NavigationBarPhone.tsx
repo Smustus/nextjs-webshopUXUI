@@ -19,14 +19,14 @@ const NavigationBarPhone = () => {
 
   return (
     <nav
-      className={`flex fixed bottom-0 sm:hidden flex-row justify-center items-center font-black text-lg h-fit w-full p-1 pb-2 z-20 text-white bg-gradient-to-b from-slate-500 to-slate-900`}
+      className={`flex fixed bottom-0 sm:hidden flex-row justify-center items-center font-black text-lg h-fit w-full p-1 z-20 text-white bg-gradient-to-b from-slate-500 to-slate-900`}
     >
       <section className={`flex flex-row justify-around items-center w-full`}>
         {navLinks.map((link, index) =>
           pathname === link.href ? (
             <div
               key={`${link.label}-${index}`}
-              className={`w-full text-center flex justify-center pb-3 mx-4 group active:scale-95 duration-200`}
+              className={`w-full text-center flex justify-center pb-2 mx-4 group active:scale-95 duration-200`}
             >
               <Link
                 href={link.href}
@@ -35,7 +35,7 @@ const NavigationBarPhone = () => {
                     setMenuOpen(!menuOpen);
                   }
                 }}
-                className="relative flex flex-col justify-center items-center pb-2 pt-4 mx-2"
+                className="relative flex flex-col justify-center items-center pb-1 pt-3 mx-2"
               >
                 <Image
                   width={30}
@@ -53,7 +53,7 @@ const NavigationBarPhone = () => {
           ) : (
             <div
               key={`${link.label}-${index}`}
-              className={`w-full text-center flex flex-col justify-center pb-3 mx-4 group hover:animate-pulse rounded-full`}
+              className={`w-full text-center flex flex-col justify-center pb-2 mx-4 group hover:animate-pulse rounded-full`}
             >
               <Link
                 href={link.href}
@@ -62,7 +62,7 @@ const NavigationBarPhone = () => {
                     setMenuOpen(!menuOpen);
                   }
                 }}
-                className="relative flex flex-col justify-center items-center pb-2 pt-4 mx-2"
+                className="relative flex flex-col justify-center items-center pb-1 pt-3 mx-2"
               >
                 <Image
                   width={30}

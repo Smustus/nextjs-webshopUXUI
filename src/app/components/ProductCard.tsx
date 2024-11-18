@@ -5,6 +5,7 @@ import Button from "./Button";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import DiscountMark from "./DiscountMark";
+import RenderStarRating from "./RenderStarRating";
 
 type ProductCardProps = {
   product: Product;
@@ -73,7 +74,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </section>
 
             <section className="flex flex-col text-sm">
-              <h4 className="bg-yellow-400 text-yellow-900 font-semibold px-2.5 py-0.5 rounded-full">{`Rating: ${product.rating} / 5`}</h4>
+              <h4 className="text-end font-semibold pl-2.5 py-0.5 rounded-full">
+                {RenderStarRating(product.rating)}
+              </h4>
               <h4 className="text-gray-600 font-bold text-end m-1">{`${product.reviews.length} reviews`}</h4>
             </section>
           </div>

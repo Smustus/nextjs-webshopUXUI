@@ -4,6 +4,7 @@ import chevronRight from "../assets/chevron-right.svg";
 import Link from "next/link";
 import { formatEUR } from "@/lib/formatters";
 import DiscountMark from "./DiscountMark";
+import RenderStarRating from "./RenderStarRating";
 
 type ProductData = {
   products: Product[];
@@ -106,7 +107,9 @@ const PopularProductsDisplay = async () => {
                     </section>
 
                     <section className="flex flex-col text-sm">
-                      <h4 className="bg-yellow-400 text-yellow-900 font-semibold px-2.5 py-0.5 rounded-full">{`Rating: ${product.rating} / 5`}</h4>
+                      <h4 className="font-semibold pl-2.5 py-0.5 rounded-full">
+                        {RenderStarRating(product.rating)}
+                      </h4>
                       <h4 className="text-gray-600 font-bold text-end m-1">{`${product.reviews.length} reviews`}</h4>
                     </section>
                   </div>

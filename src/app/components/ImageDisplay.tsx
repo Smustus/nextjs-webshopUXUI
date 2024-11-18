@@ -8,8 +8,6 @@ type ImageDisplayProps = {
 };
 
 const ImageDisplay = ({ product, className }: ImageDisplayProps) => {
-  console.log(product);
-
   const [currentImage, setCurrentImage] = useState<string>(product.images[0]);
   return (
     <article className={`${className}`}>
