@@ -16,14 +16,6 @@ export default function Home() {
         <DiscountCard />
         <ProductBenefitCard />
         <SignupCard />
-        {/* <div className="relative p-6 rounded-lg bg-white/20">
-          <div className="absolute -inset-0.5 bg-white/20 blur-md rounded-lg pointer-events-none"></div>
-
-          <div className="relative z-10 text-white text-center">
-            <h2 className="text-xl font-bold">Blurred Border</h2>
-            <p className="mt-2">This is an example of a blurred border.</p>
-          </div>
-        </div> */}
         <section className="col-span-2 md:col-span-3">
           <PopularProductsDisplay />
         </section>

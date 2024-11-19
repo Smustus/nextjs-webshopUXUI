@@ -1,9 +1,7 @@
 "use client";
 import Button from "@/app/components/Button";
 import CartCalculation from "@/app/components/CartCalculation";
-
 import { getCartProducts } from "@/lib/utils/getProducts";
-
 import { formatEUR } from "@/lib/formatters";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,7 +36,7 @@ const ConfirmationPage = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4 mt-6 rounded-3xl shadow-lg">
+    <section className="flex flex-col items-center justify-start min-h-fit bg-white px-4 mt-6 rounded-3xl shadow-lg">
       <div className="p-6 md:p-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
           Thank you for your purchase!

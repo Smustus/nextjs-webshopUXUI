@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { formatEUR } from "@/lib/formatters";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,12 +20,20 @@ const DisplayProductsCart = ({
   setCartProducts,
   setUniqueProducts,
 }: DisplayProductsCartProps) => {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    console.log(cartProducts);
-    console.log(uniqueProducts);
-  }, [cartProducts, uniqueProducts]);
+    const updateScreenSize = () => {
+      setIsLargeScreen(window.innerWidth > 639);
+    };
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", updateScreenSize);
+    };
+  }, []);
 
   const productAmount = (productID: number) => {
     return cartProducts.filter((product) => product.id === productID).length;
@@ -128,40 +136,68 @@ const DisplayProductsCart = ({
               />
             </Link>
 
-            <div
-              className={`flex items-center ${
-                window.innerWidth < 640
-                  ? "cursor-pointer hover:bg-slate-300/40 rounded-lg"
-                  : ""
-              }`}
-              onClick={() => {
-                if (window.innerWidth < 640) {
-                  router.push(
-                    `/products/${product.title
-                      .toLowerCase()
-                      .split(" ")
-                      .join("-")}-${product.id}`
-                  );
-                }
-              }}
-            >
-              <section className="p-4 flex flex-col justify-center">
-                <h3 className="text-base font-bold text-gray-800">
-                  {product.title}
-                </h3>
+            {isLargeScreen ? (
+              <div
+                className={`flex items-center ${
+                  !isLargeScreen
+                    ? "cursor-pointer hover:bg-slate-300/40 rounded-lg"
+                    : ""
+                }`}
+                onClick={() => {
+                  if (!isLargeScreen) {
+                    router.push(
+                      `/products/${product.title
+                        .toLowerCase()
+                        .split(" ")
+                        .join("-")}-${product.id}`
+                    );
+                  }
+                }}
+              >
+                <section className="p-4 flex flex-col justify-center">
+                  <h3 className="text-base font-bold text-gray-800">
+                    {product.title}
+                  </h3>
 
-                <h4
-                  className={`mt-1 font-semibold text-sm ${
-                    product.stock > 0 ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {product.stock > 0 ? `In Stock` : "Out of Stock"}
-                </h4>
-                <h4 className="text-sm font-semibold text-gray-500 mt-1">
-                  {product.shippingInformation}
-                </h4>
-              </section>
-            </div>
+                  <h4
+                    className={`mt-1 font-semibold text-sm ${
+                      product.stock > 0 ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {product.stock > 0 ? `In Stock` : "Out of Stock"}
+                  </h4>
+                  <h4 className="text-sm font-semibold text-gray-500 mt-1">
+                    {product.shippingInformation}
+                  </h4>
+                </section>
+              </div>
+            ) : (
+              <Link
+                className={`flex items-center cursor-pointer hover:bg-slate-300/40 rounded-lg`}
+                href={`/products/${product.title
+                  .toLowerCase()
+                  .split(" ")
+                  .join("-")}-${product.id}`}
+              >
+                <section className="p-4 flex flex-col justify-center">
+                  <h3 className="text-base font-bold text-gray-800">
+                    {product.title}
+                  </h3>
+
+                  <h4
+                    className={`mt-1 font-semibold text-sm ${
+                      product.stock > 0 ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {product.stock > 0 ? `In Stock` : "Out of Stock"}
+                  </h4>
+                  <h4 className="text-sm font-semibold text-gray-500 mt-1">
+                    {product.shippingInformation}
+                  </h4>
+                </section>
+              </Link>
+            )}
+
             <div className="flex items-start justify-between mx-2">
               <section className="flex flex-col">
                 <span className="text-base font-bold text-red-500">

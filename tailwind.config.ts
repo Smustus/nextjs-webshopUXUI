@@ -13,6 +13,7 @@ export default {
         foreground: "var(--foreground)",
       },
       boxShadow: {
+        "custom-white-sm": "0px 0px 15px 2px rgba(255, 255, 255, 0.1)",
         "custom-white": "0px 0px 15px 3px rgba(255, 255, 255, 0.15)",
         "custom-white-lg": "0px 0px 15px 5px rgba(255, 255, 255, 0.15)",
       },

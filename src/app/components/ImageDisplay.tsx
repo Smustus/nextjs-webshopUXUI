@@ -14,9 +14,9 @@ const ImageDisplay = ({ product, className }: ImageDisplayProps) => {
       <Image
         src={currentImage}
         alt={product.title}
-        width={300}
-        height={300}
-        className={`auto-dimensions`}
+        width={600}
+        height={600}
+        className={`big-auto-dimensions`}
       />
 
       <div className="flex justify-center lg:grid lg:grid-cols-3 gap-2 mt-2 w-full">

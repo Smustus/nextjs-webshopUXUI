@@ -18,26 +18,10 @@
 
 body {
   color: var(--foreground);
-  /* background: var(--background); */
-  background: linear-gradient(
-    180deg,
-    rgba(148, 163, 184, 1) 0%,
-    rgba(100, 116, 139, 1) 100%
-  );
-  background: linear-gradient(
-    180deg,
-    rgba(71, 85, 105, 1) 0%,
-    rgba(51, 65, 85, 1) 100%
-  );
   background: radial-gradient(
     circle,
-    rgba(71, 85, 105, 1) 60%,
-    rgba(51, 65, 85, 1) 100%
-  );
-  background: radial-gradient(
-    circle,
-    rgba(111, 125, 146, 1) 50%,
-    rgba(51, 65, 85, 1) 100%
+    rgb(141, 152, 167) 50%,
+    rgb(93, 105, 124) 100%
   );
   font-family: "geistSans", "geistSans Fallback";
   min-width: 350px;
@@ -60,10 +44,10 @@ p {
   height: auto;
 }
 
-/* .about-auto-dimensions {
-  width: 300px;
+.big-auto-dimensions {
+  width: 600px;
   height: auto;
-} */
+}
 
 .small-auto-dimensions {
   width: 90px;

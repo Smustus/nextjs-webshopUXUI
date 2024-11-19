@@ -80,7 +80,7 @@ const SearchField = () => {
     <section className="mb-8 xl:mb-10">
       <article
         ref={searchRef}
-        className="relative flex font-semibold text-gray-700 rounded-full shadow-lg focus-within:outline-1 focus-within:outline-slate-900 focus-visible:outline-none focus-visible:outline-slate-300 min-h-12"
+        className="relative flex font-semibold text-gray-700 rounded-full shadow-lg focus-within:outline-1 focus-within:outline-slate-900 focus-within:scale-105 focus-visible:outline-none focus-visible:outline-slate-300 min-h-12 duration-300"
       >
         <button>
           <Image

@@ -13,7 +13,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto p-6 mt-6 bg-white shadow-lg rounded-lg">
+      <div className="max-w-5xl mx-auto p-6 mt-6 bg-white shadow-lg rounded-lg">
         <DetailedProductCard {...product} />
       </div>
     </>

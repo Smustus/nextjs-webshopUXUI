@@ -88,7 +88,7 @@ const ProductCategoryCard = () => {
               className="arrow-dimensions drop-shadow-md"
             />
           </button>
-          <article className="flex flex-col justify-center items-center rounded-full p-1">
+          <article className="flex flex-col justify-center items-center text-white rounded-full p-1">
             <Button
               href={"/products"}
               className="bg-black/60 relative z-10 font-bold text-xl text-center md:text-2xl shadow-md drop-shadow-lg py-2 px-6 rounded-full hover:bg-black/80 hover:scale-105 hover:shadow-lg active:scale-100 duration-200 w-fit italic tracking-wide backdrop-blur-sm"

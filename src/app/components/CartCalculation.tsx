@@ -1,5 +1,4 @@
 "use client";
-
 import { formatEUR } from "@/lib/formatters";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
@@ -18,7 +17,6 @@ const CartCalculation = ({
   deliveryCost = 0,
 }: CartCalculateProps) => {
   const pathname = usePathname();
-  console.log(pathname);
 
   const { productsPrice, productsPriceDiscount, totalDiscount } =
     useMemo(() => {
@@ -80,8 +78,8 @@ const CartCalculation = ({
     >
       {pathname === "/cart/checkout" && (
         <article className="flex">
-          <Input legend="Discount code" />
-          <Button className="translate-y-1 my-2 mx-2 w-36 h-12">Apply</Button>
+          <Input legend="Discount code" className="w-40" />
+          <Button className="translate-y-1 my-2 mx-2 w-28 h-12">Apply</Button>
         </article>
       )}
       {pathname === "/cart/checkout" ||

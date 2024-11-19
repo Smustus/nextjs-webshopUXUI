@@ -40,13 +40,10 @@ const CheckoutFormPayment = ({
     setTimeout(() => {
       setIsloading(false);
     }, 2000);
-  }
-
-  const handleSubmitPayment = () => {
     setTimeout(() => {
       router.push("/cart/checkout/confirmation");
     }, 1000);
-  };
+  }
 
   return (
     <div className="flex flex-col items-center pt-4 md:pt-0">
@@ -85,7 +82,12 @@ const CheckoutFormPayment = ({
           </fieldset>
 
           <fieldset className="flex p-3 w-72 md:w-60 lg:w-72 text-stone-900/80 font-semibold">
-            <input type="checkbox" id="tos" className="mr-2 cursor-pointer" />
+            <input
+              type="checkbox"
+              id="tos"
+              className="mr-2 cursor-pointer"
+              required
+            />
             <label htmlFor="tos" className="cursor-pointer">
               I agree to the{" "}
               <span className="text-blue-900/80 hover:text-blue-900/100 cursor-pointer underline">
@@ -104,9 +106,8 @@ const CheckoutFormPayment = ({
             <Button
               type="submit"
               className="px-6 py-3 m-1 bg-black w-40 md:w-44 lg:w-40"
-              onClick={handleSubmitPayment}
             >
-              {isLoading ? "Processing..." : "Make payment"}
+              {isLoading ? "Processing..." : "Confirm payment"}
             </Button>
           </fieldset>
         </form>
@@ -127,7 +128,6 @@ const CheckoutFormPayment = ({
             <Button
               type="submit"
               className="px-6 py-3 m-1 bg-black w-40 md:w-44 lg:w-40"
-              onClick={handleSubmitPayment}
             >
               {isLoading ? "Processing..." : "Make payment"}
             </Button>
@@ -150,7 +150,6 @@ const CheckoutFormPayment = ({
             <Button
               type="submit"
               className="px-6 py-3 m-1 bg-black w-40 md:w-44 lg:w-40"
-              onClick={handleSubmitPayment}
             >
               {isLoading ? "Processing..." : "Make payment"}
             </Button>

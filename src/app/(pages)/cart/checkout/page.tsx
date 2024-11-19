@@ -30,7 +30,7 @@ const CheckoutPage = () => {
 
   return (
     <>
-      <section className="flex flex-col px-4 md:px-2 xl:px-8 pt-4 pb-8 mx-auto mt-6 w-full min-w-80 border-slate-800/50 rounded-3xl shadow-lg bg-white">
+      <section className="flex flex-col px-4 pt-4 pb-4 mx-auto mt-6 w-full min-w-80 border-slate-800/50 rounded-3xl shadow-lg bg-white">
         <legend className="text-slate-700 font-bold text-center relative flex items-center w-full">
           <div className="border-t-2 border-stone-900/0 w-full" />
           <h3 className="text-xl text-stone-900/90 font-extrabold mt-1 mb-6">
