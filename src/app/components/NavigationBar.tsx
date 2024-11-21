@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import Image from "next/image";
 import bars from "../assets/bars.svg";
 import BrandLogo from "../assets/SlateHaven.webp";
+import user from "../assets/user.svg";
 
 const NavigationBar = () => {
   const pathname = usePathname();
@@ -113,7 +114,22 @@ const NavigationBar = () => {
       >
         <Image src={bars} alt={"Menu"} className="nav-dimensions" />
       </Button>
-      <Cart />
+      <section className="absolute top-0 right-0 sm:relative grid grid-cols-1 sm:grid-cols-[1fr,1fr] sm:grid-rows-1 gap-y-6 w-screen sm:w-1/2 lg:w-full p-6 pb-4 sm:pt-0 sm:pr-4 lg:pr-0 md:pl-0">
+        <section
+          className={`relative flex flex-col items-center col-start-1 group cursor-pointer lg:mx-auto xl:mx-auto w-fit ${
+            pathname !== "/account" ? "hover:animate-pulse" : ""
+          }`}
+        >
+          <Image src={user} alt={"User"} className="account-dimensions" />
+          <h4 className="text-sm">Account</h4>
+          {pathname === "/account" ? (
+            <span className="absolute left-1/4 bottom-1 sm:-bottom-1 h-1 w-1/2 bg-white rounded-xl duration-300 ease-out" />
+          ) : (
+            <span className="absolute left-0 bottom-1 sm:-bottom-1 h-1 w-0 bg-white rounded-xl transition-all duration-300 ease-out group-hover:w-full" />
+          )}
+        </section>
+        <Cart />
+      </section>
     </nav>
   );
 };

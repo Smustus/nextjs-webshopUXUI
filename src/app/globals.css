@@ -20,7 +20,7 @@ body {
   color: var(--foreground);
   background: radial-gradient(
     circle,
-    rgb(141, 152, 167) 50%,
+    rgb(142, 153, 168) 50%,
     rgb(93, 105, 124) 100%
   );
   font-family: "geistSans", "geistSans Fallback";
@@ -54,6 +54,26 @@ p {
   height: auto;
 }
 
+.small-arrow-dimensions {
+  width: 10px;
+  height: auto;
+}
+
+.arrow-dimensions {
+  width: 20px;
+  height: auto;
+}
+
+.account-dimensions {
+  width: 27.2px;
+  height: auto;
+}
+
+.nav-dimensions-phone {
+  width: 30px;
+  height: auto;
+}
+
 .cart-dimensions {
   width: 35px;
   height: auto;
@@ -73,21 +93,6 @@ p {
 .nav-dimensions {
   width: 30px;
   height: 30px;
-}
-
-.nav-dimensions-phone {
-  width: 30px;
-  height: auto;
-}
-
-.arrow-dimensions {
-  width: 20px;
-  height: auto;
-}
-
-.small-arrow-dimensions {
-  width: 10px;
-  height: auto;
 }
 
 .brandLogo {

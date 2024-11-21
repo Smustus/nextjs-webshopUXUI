@@ -4,7 +4,9 @@ import Button from "./Button";
 import Input from "./Input";
 import CheckoutFormPayment from "./CheckoutFormPayment";
 import DeliveryOptions from "./DeliveryOptions";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import penForm from "../assets/pen-to-square.svg";
+import userSecret from "../assets/user-secret.svg";
 
 type CheckoutFormProps = {
   setDeliveryCost: Dispatch<SetStateAction<number>>;
@@ -12,11 +14,9 @@ type CheckoutFormProps = {
 
 const CheckoutForm = ({ setDeliveryCost }: CheckoutFormProps) => {
   const [activeForm, setActiveForm] = useState<
-    "personDetails" | "deliveryOptions" | "paymentDetails"
-  >("personDetails");
+    "" | "personDetails" | "deliveryOptions" | "paymentDetails"
+  >("");
   const [isLoading, setIsloading] = useState(false);
-
-  const router = useRouter();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -29,6 +29,39 @@ const CheckoutForm = ({ setDeliveryCost }: CheckoutFormProps) => {
 
   return (
     <>
+      {activeForm === "" && (
+        <section className="flex flex-col items-center">
+          <h2 className="text-stone-900/80 text-center font-black text-xl mb-6">
+            Do you have an account?
+          </h2>
+          <div className="flex flex-row md:flex-col lg:flex-row">
+            <article
+              onClick={() => setActiveForm("personDetails")}
+              className="text-gray-800/80 flex flex-col items-center justify-center text-center bg-gradient-to-br from-white/40 via-white/60 to-white/80 w-40 h-32 rounded-xl shadow-lg cursor-pointer active:scale-95 duration-200 font-semibold p-3 m-2 border-2 border-gray-800/60"
+            >
+              <Image
+                src={penForm}
+                alt={"Login/Create"}
+                className="cart-dimensions mb-2"
+              />
+              Login /
+              <br />
+              Create Account
+            </article>
+            <article
+              onClick={() => setActiveForm("personDetails")}
+              className="flex flex-col items-center justify-center text-center bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600 w-40 h-32 rounded-xl shadow-lg hover:bg-gradient-to-tr hover:from-slate-700 hover:via-slate-500 hover:to-slate-700 cursor-pointer active:scale-95 duration-200 font-semibold p-3 m-2"
+            >
+              <Image
+                src={userSecret}
+                alt={"Guest"}
+                className="cart-dimensions mb-2"
+              />
+              Guest
+            </article>
+          </div>
+        </section>
+      )}
       {activeForm === "personDetails" && (
         <form
           onSubmit={handleSubmit}
@@ -66,7 +99,7 @@ const CheckoutForm = ({ setDeliveryCost }: CheckoutFormProps) => {
           <fieldset className="text-center mt-2 sm:m-0">
             <Button
               className="px-6 py-3 m-1 bg-black w-40"
-              onClick={() => router.push("/cart")}
+              onClick={() => setActiveForm("")}
             >
               Back
             </Button>

@@ -38,13 +38,13 @@ const CategoryFilterProducts = ({
 
   return (
     <div className="flex flex-col items-center justify-center w-5/6 sm:w-full">
-      <section className="grid grid-cols-2 sm:grid-cols-5 gap-x-2 sm:gap-4 mb-8 sm:mb-6 rounded-3xl sm:rounded-full p-0 sm:p-1 px-0 bg-gradient-to-b from-slate-400 to-slate-900/70 w-full shadow-custom-white-sm">
+      <section className="grid grid-cols-2 sm:grid-cols-5 gap-x-2 sm:gap-0 lg:gap-12 mb-8 sm:mb-6 rounded-3xl sm:rounded-full p-0 sm:p-1 px-0 w-full h-44 sm:h-16">
         {categories.map((category) => (
           <article
             key={category}
-            className={`relative flex flex-col items-center justify-center font-bold drop-shadow-md sm:rounded-lg py-3 pb-4 mx-2 mt-2 sm:mt-0 mb-0 cursor-pointer group ${
+            className={`relative flex flex-col items-center justify-center font-bold drop-shadow-md rounded-full py-3 pb-4 mx-2 lg:mx-4 mt-2 sm:mt-0 mb-0 cursor-pointer group ${
               activeCategory.includes(category)
-                ? "border-2 border-white/80 sm:border-0 bg-slate-400 sm:bg-transparent rounded-2xl"
+                ? "border-2 border-white/70 bg-gradient-to-br from-slate-400 to-slate-800"
                 : "hover:animate-pulse"
             }`}
             onClick={() => handleClick(category)}

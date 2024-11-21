@@ -12,7 +12,7 @@ const CheckoutFormPayment = ({
   setActiveForm,
 }: {
   setActiveForm: Dispatch<
-    SetStateAction<"personDetails" | "deliveryOptions" | "paymentDetails">
+    SetStateAction<"" | "personDetails" | "deliveryOptions" | "paymentDetails">
   >;
 }) => {
   const [isLoading, setIsloading] = useState(false);

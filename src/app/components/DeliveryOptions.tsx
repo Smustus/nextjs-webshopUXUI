@@ -7,7 +7,7 @@ const DeliveryOptions = ({
   setDeliveryCost,
 }: {
   setActiveForm: Dispatch<
-    SetStateAction<"personDetails" | "deliveryOptions" | "paymentDetails">
+    SetStateAction<"" | "personDetails" | "deliveryOptions" | "paymentDetails">
   >;
   setDeliveryCost: Dispatch<SetStateAction<number>>;
 }) => {

@@ -78,7 +78,7 @@ const ProductCategoryCard = () => {
       {isLargeScreen ? (
         <>
           <button
-            className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 ml-4 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105"
+            className="flex justify-center items-center relative z-10 font-bold text-lg drop-shadow-lg p-2 ml-4 rounded-full w-14 h-14 bg-black/60 hover:bg-black/90 duration-200 hover:scale-105 text-white"
             onClick={() => handleChange(-1)}
             aria-label="Previous"
           >
@@ -113,7 +113,7 @@ const ProductCategoryCard = () => {
         </>
       ) : (
         <>
-          <article className="flex flex-col justify-center items-center rounded-full p-1 my-auto">
+          <article className="flex flex-col justify-center items-center rounded-full p-1 my-auto text-white">
             <Button
               href={"/products"}
               className="bg-black/60 relative z-10 font-bold text-xl text-center md:text-2xl shadow-md drop-shadow-lg py-2 px-6 rounded-full hover:bg-black/80 hover:scale-105 hover:shadow-lg active:scale-100 duration-200 w-fit italic tracking-wide backdrop-blur-sm"
