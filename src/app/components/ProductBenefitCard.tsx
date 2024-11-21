@@ -76,7 +76,8 @@ const ProductBenefitCard = () => {
 
   return (
     <Link
-      href={"/about"}
+      href="/about"
+      aria-label={`Learn more about ${views[activeView].title}`}
       className="row-start-3 md:row-start-auto col-span-2 md:col-span-1 md:block w-full h-full fade"
     >
       <article
@@ -90,14 +91,22 @@ const ProductBenefitCard = () => {
       >
         <div className="absolute inset-0 bg-black/70 rounded-lg" />
 
-        <h3 className="text-2xl lg:text-3xl font-black mb-2 italic z-10 drop-shadow-md">
+        <h3
+          className="text-2xl lg:text-3xl font-black mb-2 italic z-10 drop-shadow-md"
+          role="heading"
+          aria-level={2}
+        >
           {views[activeView].title}
         </h3>
-        <aside className="flex flex-col italic z-10">
+        <aside
+          className="flex flex-col italic z-10"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {views[activeView].benefits.map((benefit, index) => (
             <h4
               key={`${index}-${benefit}`}
-              className="text-base lg:text-xl mb-2 drop-shadow-md font-bold "
+              className="text-base lg:text-xl mb-2 drop-shadow-md font-bold"
             >
               {benefit}
             </h4>

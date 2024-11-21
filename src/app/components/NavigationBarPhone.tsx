@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
 import Image from "next/image";
 import homeLogo from "../assets/house.svg";
 import shopLogo from "../assets/basket-shopping.svg";
@@ -10,7 +9,6 @@ import aboutLogo from "../assets/book-open.svg";
 const NavigationBarPhone = () => {
   const pathname = usePathname();
 
-  const [menuOpen, setMenuOpen] = useState(false);
   const navLinks = [
     { href: "/", label: "Home", image: homeLogo.src },
     { href: "/products", label: "Products", image: shopLogo.src },
@@ -19,7 +17,9 @@ const NavigationBarPhone = () => {
 
   return (
     <nav
-      className={`flex fixed bottom-0 sm:hidden flex-row justify-center items-center font-black text-lg h-fit w-full p-1 z-20 text-white bg-gradient-to-b from-slate-500 to-slate-900`}
+      className={`flex fixed bottom-0 sm:hidden flex-row justify-center items-center font-black text-base h-fit w-full p-1 z-20 text-white bg-gradient-to-b from-slate-500 to-slate-900`}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <section className={`flex flex-row justify-around items-center w-full`}>
         {navLinks.map((link, index) =>
@@ -30,18 +30,14 @@ const NavigationBarPhone = () => {
             >
               <Link
                 href={link.href}
-                onClick={() => {
-                  if (window.innerWidth < 640) {
-                    setMenuOpen(!menuOpen);
-                  }
-                }}
                 className="relative flex flex-col justify-center items-center pb-1 pt-3 mx-2"
+                aria-current={pathname === link.href ? "page" : undefined}
               >
                 <Image
-                  width={30}
-                  height={30}
+                  width={25}
+                  height={25}
                   src={link.image}
-                  alt={link.label}
+                  alt={`${link.label}-icon}`}
                   className="nav-dimensions-phone"
                 />
                 {link.label}
@@ -57,23 +53,18 @@ const NavigationBarPhone = () => {
             >
               <Link
                 href={link.href}
-                onClick={() => {
-                  if (window.innerWidth < 640) {
-                    setMenuOpen(!menuOpen);
-                  }
-                }}
                 className="relative flex flex-col justify-center items-center pb-1 pt-3 mx-2"
               >
                 <Image
-                  width={30}
-                  height={30}
+                  width={25}
+                  height={25}
                   src={link.image}
-                  alt={link.label}
+                  alt={`${link.label}-icon}`}
                   className="nav-dimensions-phone"
                 />
                 {link.label}
                 <span
-                  className={`absolute left-50 -bottom-0 h-1 w-0 bg-white rounded-xl transition-all duration-300 ease-out group-hover:w-1/2`}
+                  className={`absolute left-1/4 -bottom-0 h-1 w-0 bg-white rounded-xl transition-all duration-300 ease-out group-hover:w-1/2`}
                 />
               </Link>
             </div>

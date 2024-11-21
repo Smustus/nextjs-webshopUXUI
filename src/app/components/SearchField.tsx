@@ -27,7 +27,7 @@ const SearchField = () => {
       const { products }: ProductData = await productData.json();
       const productNames = products.map(({ id, title }) => ({ id, title }));
       setProducts(productNames);
-      return products.map(({ id, title }) => ({ id, title }));
+      return productNames;
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -80,17 +80,20 @@ const SearchField = () => {
     <section className="mb-8 xl:mb-10">
       <article
         ref={searchRef}
-        className="relative flex font-semibold text-gray-700 rounded-full shadow-lg focus-within:outline-1 focus-within:outline-slate-900 focus-within:scale-105 focus-visible:outline-none focus-visible:outline-slate-300 min-h-12 duration-300"
+        className="relative flex font-semibold text-gray-700 rounded-full shadow-lg min-h-12 duration-300"
+        role="search"
       >
-        <button>
+        <figure>
           <Image
             src={magGlass}
             alt="Search"
             className="bg-white rounded-l-full py-1 pl-2 magGlas-dimensions"
           />
-        </button>
+        </figure>
 
-        <label htmlFor="searchField" />
+        <label htmlFor="searchField" className="sr-only">
+          Search for products
+        </label>
         <input
           name="searchField"
           id="searchField"
@@ -98,25 +101,45 @@ const SearchField = () => {
           placeholder="Search products..."
           className="text-lg pl-2 rounded-r-full focus-visible:outline-none focus-visible:shadow-xl max-w-64 sm:max-w-none"
           onChange={(e) => setSearchInput(e.target.value)}
+          aria-autocomplete="list"
+          aria-controls="product-list"
+          aria-activedescendant={
+            dropdownVisible && matchingElements.length > 0 ? `product-0` : ""
+          }
         />
 
         {dropdownVisible && (
-          <ul className="absolute top-full right-0 w-full bg-white border border-gray-200 shadow-md rounded-lg max-h-48 overflow-y-auto z-30">
+          <ul
+            id="product-list"
+            role="listbox"
+            className="absolute top-full right-0 w-full bg-white border border-gray-200 shadow-md rounded-lg max-h-48 overflow-y-auto z-40"
+            aria-live="polite"
+          >
             {matchingElements.length > 0 ? (
               matchingElements.map((product, index) => (
                 <li
-                  key={index}
-                  className="px-4 py-2 cursor-pointer hover:bg-gray-200"
-                  onClick={() => {
-                    initiateSearch(product);
-                    setDropdownVisible(false);
+                  id={`product-${index}`}
+                  key={product.id}
+                  className="px-4 py-2 cursor-pointer hover:bg-gray-200 focus:bg-gray-200"
+                  tabIndex={0}
+                  onClick={() => initiateSearch(product)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      initiateSearch(product);
+                    }
                   }}
                 >
                   {product.title}
                 </li>
               ))
             ) : (
-              <li className="px-4 py-2 text-gray-500">No matches found</li>
+              <li
+                className="px-4 py-2 text-gray-500"
+                aria-live="polite"
+                role="alert"
+              >
+                No matches found
+              </li>
             )}
           </ul>
         )}

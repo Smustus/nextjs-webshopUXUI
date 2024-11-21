@@ -7,6 +7,7 @@ import CheckoutPaymentOptions from "./CheckoutPaymentOption";
 import klarna from "../assets/klarna.png";
 import swish from "../assets/swish.png";
 import card from "../assets/credit-card.svg";
+import Link from "next/link";
 
 const CheckoutFormPayment = ({
   setActiveForm,
@@ -50,7 +51,11 @@ const CheckoutFormPayment = ({
       <h4 className="text-stone-900/80 font-black text-xl mb-3">
         Enter payment details
       </h4>
-      <ul className="grid grid-cols-3 gap-2 border-b-2 border-black/20 pb-2">
+      <ul
+        className="grid grid-cols-3 gap-2 border-b-2 border-black/20 pb-2"
+        role="radiogroup"
+        aria-labelledby="payment-heading"
+      >
         {payments.map((payment) => (
           <li key={payment.name}>
             <CheckoutPaymentOptions
@@ -67,6 +72,7 @@ const CheckoutFormPayment = ({
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center pt-4 md:pt-2"
+          aria-labelledby="payment-heading"
         >
           <fieldset className="flex p-2 w-72 md:w-60 lg:w-72">
             <Input legend="Card number" />
@@ -87,12 +93,16 @@ const CheckoutFormPayment = ({
               id="tos"
               className="mr-2 cursor-pointer"
               required
+              aria-describedby="tos-description"
             />
             <label htmlFor="tos" className="cursor-pointer">
               I agree to the{" "}
-              <span className="text-blue-900/80 hover:text-blue-900/100 cursor-pointer underline">
-                Terms of service
-              </span>
+              <Link
+                href=""
+                className="text-blue-900/80 hover:text-blue-900/100 underline"
+              >
+                Terms of Service
+              </Link>
             </label>
           </fieldset>
 
@@ -116,6 +126,7 @@ const CheckoutFormPayment = ({
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center pt-4 md:pt-2"
+          aria-labelledby="payment-heading"
         >
           <h2 className="text-black/70">Swish Process</h2>
           <fieldset className="flex flex-row md:flex-col lg:flex-row mt-2 text-center">
@@ -138,6 +149,7 @@ const CheckoutFormPayment = ({
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center pt-4 md:pt-2"
+          aria-labelledby="payment-heading"
         >
           <h2 className="text-black/70">Klarna Process</h2>
           <fieldset className="flex flex-row md:flex-col lg:flex-row mt-2 text-center">
@@ -150,6 +162,7 @@ const CheckoutFormPayment = ({
             <Button
               type="submit"
               className="px-6 py-3 m-1 bg-black w-40 md:w-44 lg:w-40"
+              aria-busy={isLoading}
             >
               {isLoading ? "Processing..." : "Make payment"}
             </Button>

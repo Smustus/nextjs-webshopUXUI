@@ -45,7 +45,7 @@ const NavigationBar = () => {
       <section className="relative flex justify-center sm:justify-center h-full w-full sm:w-1/2 lg:w-full lg:pl-0 sm:pl-4 md:pl-12">
         <Image
           src={BrandLogo}
-          alt={"Brand logo"}
+          alt={"SlateHaven brand logo"}
           priority={false}
           className="brandLogo"
         />
@@ -74,6 +74,8 @@ const NavigationBar = () => {
                   }
                 }}
                 className="relative pb-2 pt-6 sm:pt-3 drop-shadow-md"
+                role="link"
+                aria-current={pathname === link.href ? "page" : undefined}
               >
                 {link.label}
                 <span
@@ -96,6 +98,8 @@ const NavigationBar = () => {
                   }
                 }}
                 className="relative pb-2 pt-6 sm:pt-3 drop-shadow-md"
+                role="link"
+                aria-current={pathname === link.href ? "page" : undefined}
               >
                 {link.label}
                 <span
@@ -111,6 +115,7 @@ const NavigationBar = () => {
       <Button
         className="hidden sm:hidden absolute left-4  justify-center items-center mr-7 w-14 h-14"
         onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
       >
         <Image src={bars} alt={"Menu"} className="nav-dimensions" />
       </Button>
@@ -119,6 +124,7 @@ const NavigationBar = () => {
           className={`relative flex flex-col items-center col-start-1 group cursor-pointer lg:mx-auto xl:mx-auto w-fit ${
             pathname !== "/account" ? "hover:animate-pulse" : ""
           }`}
+          role="link"
         >
           <Image src={user} alt={"User"} className="account-dimensions" />
           <h4 className="text-sm">Account</h4>

@@ -2,6 +2,7 @@
 import CartCalculation from "@/app/components/CartCalculation";
 import CheckoutForm from "@/app/components/CheckoutForm";
 import DisplayProductsCart from "@/app/components/DisplayProductsCart";
+import { deliveryOptions } from "@/lib/deliveryOptions";
 import { getCartProducts } from "@/lib/utils/getProducts";
 import { useEffect, useState } from "react";
 
@@ -20,7 +21,9 @@ const accumulatedProdArr = (cartProducts: Product[]) => {
 const CheckoutPage = () => {
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [uniqueProducts, setUniqueProducts] = useState<Product[]>([]);
-  const [deliveryCost, setDeliveryCost] = useState<number>(0);
+  const [deliveryCost, setDeliveryCost] = useState<number>(
+    deliveryOptions[0].value
+  );
 
   useEffect(() => {
     const products = getCartProducts();
