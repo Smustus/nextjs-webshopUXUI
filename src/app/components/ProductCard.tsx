@@ -62,7 +62,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             height={250}
             className="rounded-t-lg hover:scale-110 duration-200 cursor-pointer auto-dimensions"
           />
-          <DiscountMark discountPercent={discountPercent} />
+          <DiscountMark
+            discountPercent={discountPercent}
+            position="top-2 left-0"
+          />
         </Link>
         <section className="p-4 pb-8 flex flex-col justify-between">
           <h3

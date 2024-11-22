@@ -15,8 +15,8 @@ const ImageDisplay = ({ product, className }: ImageDisplayProps) => {
       <Image
         src={currentImage}
         alt={`Main image of ${product.title}`}
-        width={600}
-        height={600}
+        width={400}
+        height={400}
         className={`big-auto-dimensions`}
         aria-live="polite"
       />
